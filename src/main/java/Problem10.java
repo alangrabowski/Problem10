@@ -18,12 +18,6 @@ public class Problem10 {
     }
 
     public static void main(String[] args) {
-        final long start = System.currentTimeMillis();
-
         System.out.println(sumOfAllPrimesBelow(2000000));
-
-        final long end = System.currentTimeMillis();
-        long duration = end - start;
-        System.out.println(duration);
     }
 }
