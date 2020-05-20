@@ -1,23 +1,27 @@
 public class Problem10 {
-    public static boolean isPrime(int n){
-        if (n<=1){
-            return false;
+    public static long sumOfAllPrimesBelow(int n){
+        boolean[] isPrime = new boolean[n+1];
+        long sum=0;
+        for (int i=2; i<=n; i++){
+            isPrime[i]=true;
         }
-        for (int i=2; i<=n/2; i++){
-            if (n%i==0)
-                return false;
+        for (int p=2; p*p<=n; p++){
+            for (int i=p*2; i<=n; i+=p)
+                isPrime[i]=false;
         }
-        return true;
+        for (int i=1; i<=n; i++){
+            if (isPrime[i]){
+                sum+=i;
+            }
+        }
+        return sum;
     }
 
     public static void main(String[] args) {
         final long start = System.currentTimeMillis();
-        long sum=2;
-        for (int i=1; i<2000000; i+=2){
-            if (isPrime(i))
-                sum+=i;
-        }
-        System.out.println(sum);
+
+        System.out.println(sumOfAllPrimesBelow(2000000));
+
         final long end = System.currentTimeMillis();
         long duration = end - start;
         System.out.println(duration);
